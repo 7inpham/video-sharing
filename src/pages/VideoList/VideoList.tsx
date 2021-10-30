@@ -1,24 +1,34 @@
 import { useEffect, useState } from 'react'
 import { IVideo } from 'types/video'
-import Layout from 'components/Layout/Layout'
-import VideoCard from 'components/VideoCard/VideoCard'
 import { getVideos } from 'services/video'
+import Layout from 'components/Layout/Layout'
+import Loader from 'components/Loader/Loader'
+import VideoCard from 'components/VideoCard/VideoCard'
 
 function VideoList() {
+  const [ loading, setLoading ] = useState(false)
   const [ videos, setVideos ] = useState<IVideo[]>([])
 
   useEffect(() => {
     const load = async () => {
-      const result = await getVideos()
-      setVideos(result)
+      setLoading(true)
+      try {
+        const result = await getVideos()
+        setVideos(result)
+      } catch (e) {
+        alert(e)
+      } finally {
+        setLoading(false)
+      }
     }
     load()
   }, [])
 
   return (
     <Layout>
+      <Loader loading={loading}/>
       {
-        videos.map((video) => <VideoCard key={video.id} video={video}/>)
+        videos.map((video, index) => <VideoCard key={index} video={video}/>)
       }
     </Layout>
   )

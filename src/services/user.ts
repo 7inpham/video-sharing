@@ -1,5 +1,5 @@
-import { auth } from './firebase-app'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from './firebase-app'
 import { IUser } from 'types/user'
 
 async function registerOrLogin(email: string, password: string): Promise<IUser> {

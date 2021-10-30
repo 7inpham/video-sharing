@@ -3,8 +3,8 @@ export interface IVideo {
   title: string
   description: string
   thumbnailUrl: string
-  viewCount: number
-  likeCount: number
-  dislikeCount: number
-  sharedBy?: string
+  viewCount: string
+  likeCount: string
+  dislikeCount: string
+  sharedBy: string
 }

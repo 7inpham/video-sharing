@@ -41,14 +41,22 @@ function VideoCard(props: Props) {
             <FontAwesomeIcon icon={faEye} />
             <span>{props.video.viewCount}</span>
           </div>
-          <div>
-            <FontAwesomeIcon icon={faThumbsUp} />
-            <span>{props.video.likeCount}</span>
-          </div>
-          <div>
-            <FontAwesomeIcon icon={faThumbsDown} />
-            <span>{props.video.dislikeCount}</span>
-          </div>
+          {
+            props.video.likeCount
+            &&
+            <div>
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <span>{props.video.likeCount}</span>
+            </div>
+          }
+          {
+            props.video.dislikeCount
+            &&
+            <div>
+              <FontAwesomeIcon icon={faThumbsDown} />
+              <span>{props.video.dislikeCount}</span>
+            </div>
+          }
         </div>
         <div className={styles.description}>{displayDescription()}</div>
       </div>

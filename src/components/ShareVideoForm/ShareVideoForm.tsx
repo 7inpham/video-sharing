@@ -1,17 +1,19 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { getYoutubeId, listYoutubeInfo } from 'services'
-import VideoCard from 'components/VideoCard/VideoCard'
-import styles from './ShareVideoForm.module.scss'
-import { IVideo } from 'types/video'
-import { saveVideo } from 'services/video'
 import { useAuth } from 'context/auth'
+import { IVideo } from 'types/video'
+import { getYoutubeId, listYoutubeInfo, saveVideo } from 'services'
+import VideoCard from 'components/VideoCard/VideoCard'
+import Loader from 'components/Loader/Loader'
+import styles from './ShareVideoForm.module.scss'
 
 function ShareVideoForm() {
   const { user } = useAuth()
   const [url, setUrl] = useState('')
   const [video, setVideo] = useState<IVideo | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const handleChangeUrl = async (e: ChangeEvent<HTMLInputElement>) => {
+    setLoading(true)
     const value = e.target.value
     setUrl(value)
     const id = getYoutubeId(value)
@@ -23,20 +25,20 @@ function ShareVideoForm() {
           title: info.items[0].snippet.title,
           description: info.items[0].snippet.description,
           thumbnailUrl: info.items[0].snippet.thumbnails.medium.url,
-          viewCount: Number(info.items[0].statistics.viewCount),
-          likeCount: Number(info.items[0].statistics.likeCount),
-          dislikeCount: Number(info.items[0].statistics.dislikeCount)
-        }
-        if (user) {
-          v.sharedBy = user.email
+          viewCount: info.items[0].statistics.viewCount || '',
+          likeCount: info.items[0].statistics.likeCount || '',
+          dislikeCount: info.items[0].statistics.dislikeCount || '',
+          sharedBy: user?.email ?? ''
         }
         setVideo(v)
       }
     } else {
       setVideo(null)
     }
+    setLoading(false)
   }
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    setLoading(true)
     event.preventDefault()
     try {
       if (video) {
@@ -47,12 +49,15 @@ function ShareVideoForm() {
       }
     } catch (e) {
       alert(e)
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
-    <div>
-      <form className={styles.container} onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <Loader loading={loading}/>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <h1>Share a Youtube movie</h1>
         <label>Youtube URL</label>
         <input
@@ -62,9 +67,15 @@ function ShareVideoForm() {
           value={url}
           onChange={handleChangeUrl}
         />
-        <input type="submit" value="Share" disabled={!video}/>
+        <input type="submit" value="Share" disabled={!video || loading}/>
       </form>
-      { video && <VideoCard video={video} /> }
+      {
+        video
+        &&
+        <div className={styles.preview}>
+          <VideoCard video={video} />
+        </div>
+      }
     </div>
   )
 }
