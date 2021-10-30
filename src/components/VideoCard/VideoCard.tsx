@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { IVideo } from 'types/video'
@@ -18,15 +17,21 @@ function VideoCard(props: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.thumbnail}>
-        <Link to={getYoutubeLink(props.video.id)} target="_blank">
+        <a href={getYoutubeLink(props.video.id)} target="_blank" rel="noreferrer">
           <img src={props.video.thumbnailUrl} alt="Thumbnail" />
-        </Link>
+        </a>
+        {/* <iframe
+          width="420"
+          height="315"
+          title={props.video.id}
+          src={`https://www.youtube.com/embed/${props.video.id}`}>
+        </iframe> */}
       </div>
       <div className={styles.meta}>
         <div className={styles.title}>
-          <Link to={getYoutubeLink(props.video.id)} target="_blank">
+          <a href={getYoutubeLink(props.video.id)} target="_blank" rel="noreferrer">
             {props.video.title}
-          </Link>
+          </a>
         </div>
         <div className={styles.sharedBy}>
           <span>Shared by: {props.video.sharedBy}</span>

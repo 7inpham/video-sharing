@@ -27,13 +27,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "indent": ["warn", 2],
+      "quotes": ["warn", "single"],
+      "eol-last": ["warn", "always"],
+      "semi": ["warn", "never"]
+    }
   },
   "browserslist": {
     "production": [

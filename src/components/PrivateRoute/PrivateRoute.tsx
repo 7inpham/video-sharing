@@ -9,7 +9,7 @@ function PrivateRoute({ component, ...rest }: any) {
       user
         ? createElement(component, props)
         : <Redirect to='/' />
-      )}
+    )}
     />
   )
 }
