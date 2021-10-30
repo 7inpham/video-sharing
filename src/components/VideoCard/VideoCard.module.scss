@@ -1,0 +1,54 @@
+.container {
+  background: #1F1E1F;
+  display: flex;
+  padding: 24px;
+  max-width: 640px;
+  margin: 0 auto;
+  margin-bottom: 24px;
+}
+.thumbnail {
+  flex: 0 0 40%;
+  img {
+    width: 100%;
+  }
+}
+.meta {
+  margin-left: 16px;
+}
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 21px;
+  margin-bottom: 4px;
+  a {
+    color: #fff;
+  }
+}
+.sharedBy {
+  color: #949496;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+.description {
+  font-size: 14px;
+  line-height: 21px;
+  color: #949496;
+}
+.statistics {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  color: #949496;
+  font-size: 12px;
+  div {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    span {
+      margin-left: 4px;
+    }
+  }
+}
