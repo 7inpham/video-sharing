@@ -30,6 +30,11 @@ function VideoList() {
       {
         videos.map((video, index) => <VideoCard key={index} video={video}/>)
       }
+      {
+        (!loading && !videos.length)
+        &&
+        <div style={{textAlign: 'center'}}>No video</div>
+      }
     </Layout>
   )
 }

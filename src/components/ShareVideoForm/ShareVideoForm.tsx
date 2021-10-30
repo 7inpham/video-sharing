@@ -28,7 +28,8 @@ function ShareVideoForm() {
           viewCount: info.items[0].statistics.viewCount || '',
           likeCount: info.items[0].statistics.likeCount || '',
           dislikeCount: info.items[0].statistics.dislikeCount || '',
-          sharedBy: user?.email ?? ''
+          sharedBy: user?.email ?? '',
+          sharedAt: Date.now()
         }
         setVideo(v)
       }
@@ -45,7 +46,7 @@ function ShareVideoForm() {
         await saveVideo(video)
         setUrl('')
         setVideo(null)
-        alert('Success')
+        alert('Successfully shared')
       }
     } catch (e) {
       alert(e)

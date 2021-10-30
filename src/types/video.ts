@@ -7,4 +7,5 @@ export interface IVideo {
   likeCount: string
   dislikeCount: string
   sharedBy: string
+  sharedAt: number
 }

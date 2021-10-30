@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect, ReactNode, useContext } from 'react'
+import { useState, createContext, ReactNode, useContext } from 'react'
 import { config } from 'config'
 import { IUser } from 'types/user'
 import { registerOrLogin } from 'services/user'
@@ -13,21 +13,22 @@ type ProviderProps = {
   children: ReactNode
 }
 
+function initUser() {
+  const cache = localStorage.getItem(config.localStorage.userKey)
+  if (cache) {
+    try {
+      return JSON.parse(cache) as IUser
+    } catch(e) {
+      return null
+    }
+  }
+  return null
+}
+
 const AuthContext = createContext({} as ContextProps)
 
 const AuthProvider = (props: ProviderProps) => {
-  const [ user, setUser ] = useState<IUser | null>(null)
-  
-  useEffect(() => {
-    const cache = localStorage.getItem(config.localStorage.userKey)
-    if (cache) {
-      try {
-        setUser(JSON.parse(cache))
-      } catch(e) {
-        setUser(null)
-      }
-    }
-  }, [])
+  const [ user, setUser ] = useState<IUser | null>(initUser())
 
   const login = async (email: string, password: string) => {
     const result = await registerOrLogin(email, password)
