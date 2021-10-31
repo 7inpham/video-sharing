@@ -1,0 +1,26 @@
+$color-100: #2B2B30;
+$color-200: #9c0606;
+$color-300: #949496;
+$color-400: #101014;
+$color-500: #1F1E1F;
+
+$space-100: 4px;
+$space-200: 8px;
+$space-300: 16px;
+$space-400: 24px;
+
+$breakpoint-mobile: 600px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1120px;
+
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (min-width: $breakpoint-desktop) { @content ; }
+  }
+  @else if $point == tablet {
+    @media (min-width: $breakpoint-tablet) { @content ; }
+  }
+  @else if $point == mobile {
+    @media (max-width: $breakpoint-mobile)  { @content ; }
+  }
+}

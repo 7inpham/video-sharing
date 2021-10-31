@@ -5,7 +5,7 @@ import { AuthProvider } from 'context/auth'
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute'
 import VideoList from 'pages/VideoList/VideoList'
 import ShareVideo from 'pages/ShareVideo/ShareVideo'
-import './index.scss'
+import './config/styles/index.scss'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(

@@ -1,4 +1,6 @@
+@import 'config/styles/vars.scss';
+
 .body {
   color: #fff;
-  padding: 24px;
+  padding: $space-400;
 }

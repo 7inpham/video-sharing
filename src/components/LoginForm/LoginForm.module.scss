@@ -1,6 +1,11 @@
+@import 'config/styles/vars.scss';
+
 .container {
-  display: flex;
-  align-items: center;
+  display: none;
+  @include breakpoint(desktop) {
+    display: flex;
+    align-items: center;
+  }
 
   input[type="text"],
   input[type="password"] {

@@ -8,12 +8,12 @@ type Props = {
 
 function Layout(props: Props) {
   return (
-    <div className={styles.container}>
+    <>
       <Header/>
       <div className={styles.body}>
         {props.children}
       </div>
-    </div>
+    </>
   )
 }
 export default Layout

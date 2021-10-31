@@ -1,53 +1,70 @@
+@import 'config/styles/vars.scss';
+
 .container {
-  background: #101014;
-  display: flex;
-  padding: 24px;
+  background: $color-400;
+  padding: $space-400;
   max-width: 640px;
   margin: 0 auto;
+  @include breakpoint(tablet) {
+    display: flex;
+  }
 }
 .thumbnail {
-  flex: 0 0 40%;
+  @include breakpoint(tablet) {
+    flex: 0 0 40%;
+  }
   img {
     width: 100%;
   }
 }
 .meta {
-  margin-left: 16px;
+  width: 100%;
+  overflow: hidden;
+  @include breakpoint(tablet) {
+    margin-left: $space-400;
+  }
 }
 .title {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
   line-height: 21px;
-  margin-bottom: 4px;
+  font-weight: 600;
+  margin-bottom: $space-100;
   a {
     color: #fff;
   }
+  @include breakpoint(tablet) {
+    font-size: 15px;
+  }
 }
 .sharedBy {
-  color: #949496;
-  margin-bottom: 4px;
+  color: $color-300;
+  margin-bottom: $space-100;
   font-size: 12px;
 }
 .description {
-  font-size: 14px;
-  line-height: 21px;
-  color: #949496;
+  display: none;
+  @include breakpoint(tablet) {
+    display: block;
+    font-size: 14px;
+    line-height: 21px;
+    color: $color-300;
+  }
 }
 .statistics {
   display: flex;
   align-items: center;
-  margin-bottom: 4px;
-  color: #949496;
+  margin-bottom: $space-100;
+  color: $color-300;
   font-size: 12px;
   div {
     display: flex;
     align-items: center;
-    margin-right: 16px;
+    margin-right: $space-300;
     &:last-of-type {
       margin-right: 0;
     }
     span {
-      margin-left: 4px;
+      margin-left: $space-100;
     }
   }
 }
